@@ -1,16 +1,25 @@
-var express = require("express");
-var path = require("path");
+var express = require('express');
+var path = require('path');
 
 var app = express();
-var PORT = process.env.PORT || 3030;
+var PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", function(req, res) {
-	res.sendFile(path.join(__dirname, "./public/home.html"));
+app.use(express.static('app/public'));
+
+require('./app/routing/apiRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
+
+app.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname, './public/home.html'));
 });
 
-app.get("/survey", function(req, res) {
-	res.sendFile(path.join(__dirname, "./public/survey.html"));
+app.get('/survey', function(req, res) {
+	res.sendFile(path.join(__dirname, './public/survey.html'));
+});
+
+app.listen(PORT, () => {
+	console.log('Server listening on: http://localhost:' + PORT);
 });

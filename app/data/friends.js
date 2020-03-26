@@ -1,1 +1,6 @@
-var friends = [(name: "Tom Hardy")];
+var friends = [
+	{
+		name: 'Naruto Uzumaki',
+		photo: '../public/img/naruto'
+	}
+];
