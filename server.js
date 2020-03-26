@@ -12,14 +12,6 @@ app.use(express.static('app/public'));
 require('./app/routing/apiRoutes')(app);
 require('./app/routing/htmlRoutes')(app);
 
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, './public/home.html'));
-});
-
-app.get('/survey', function(req, res) {
-	res.sendFile(path.join(__dirname, './public/survey.html'));
-});
-
 app.listen(PORT, () => {
 	console.log('Server listening on: http://localhost:' + PORT);
 });
