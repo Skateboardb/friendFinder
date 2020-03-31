@@ -60,6 +60,7 @@ $(document).on('submit', '#survey', function() {
 		console.log('Please answer all questions');
 	} else {
 		runIt();
+		// $('#bestFriendModal').modal('toggle');
 	}
 
 	// function testImage(url, timeoutT) {
@@ -89,6 +90,10 @@ $(document).on('submit', '#survey', function() {
 			type: 'POST',
 			data: newUser
 		}).then(function(req, res) {
+			$('#bestFriend').text(req.matchName);
+			$('#bestFriendPhoto').attr('src', req.matchImage);
+
+			$('#bestFriendModal').modal('toggle');
 			console.log(req);
 		});
 	}
