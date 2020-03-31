@@ -54,7 +54,4 @@ var friends = [
 	}
 ];
 
-friendsObject = {
-	naruto: {}
-};
 module.exports = friends;

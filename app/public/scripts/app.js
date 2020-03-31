@@ -14,30 +14,82 @@ const questions = [
 
 $(document).ready(() => {
 	for (let i = 0; i < questions.length; i++) {
-		$('#survey').prepend(`	
-		<div class="form-group">
+		$('#question-div').append(`	
+		<div class="">
 		<label for="question-${i + 1}">${questions[i]}.</label>
-		<select class="form-control" id="question1">
-			<option value="empty"></option>
-			<option value="1">1 (Strongly Disagree)</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5 (Strongly Agree)</option>
-		</select>
+		<fieldset class="form-group" id="question1">
+		
+			<input id="q${i + 1}-1" type="radio" name="question-${i + 1}" value="1"></input>
+			<label for="q${i + 1}-1">1</label>
+
+			<input id="q${i + 1}-2" type="radio" name="question-${i + 1}" value="2"></input>
+			<label for="q${i + 1}-2">2</label>
+
+			<input id="q${i + 1}-3" type="radio" name="question-${i + 1}" value="3"></input>
+			<label for="q${i + 1}-3">3</label>
+
+			<input id="q${i + 1}-4" type="radio" name="question-${i + 1}" value="4"></input>
+			<label for="q${i + 1}-4">4</label>
+
+			<input id="q${i + 1}-5" type="radio" name="question-${i + 1}" value="5"></input>
+			<label for="q${i + 1}-5">5</label>
+
+		</fieldset>
 	</div>
 	`);
 	}
 });
 
-// $('#survey').on('submit', function() {
-// 	event.preventDefault();
-// 	let isValid;
-// 	'select'.each(function() {
-// 		let element = $(this);
-// 		if (!element.val()) {
-// 			isValid = false;
-// 		}
-// 	});
-// 	alert(isValid);
-// });
+$(document).on('submit', '#survey', function() {
+	event.preventDefault();
+	let newUser = {
+		name: $('#name')
+			.val()
+			.trim(),
+		photo: $('#photo')
+			.val()
+			.trim(),
+		data: []
+	};
+
+	$('input:checked').each(function() {
+		newUser.data.push($(this).val());
+	});
+
+	if (newUser.data.length !== 11) {
+		console.log('Please answer all questions');
+	} else {
+		runIt();
+	}
+
+	// function testImage(url, timeoutT) {
+	// 	return new Promise(function(resolve, reject) {
+	// 	  var timeout = timeoutT || 5000;
+	// 	  var timer, img = new Image();
+	// 	  img.onerror = img.onabort = function() {
+	// 		  clearTimeout(timer);
+	// 			reject("error");
+	// 	  };
+	// 	  img.onload = function() {
+	// 		   clearTimeout(timer);
+	// 		   resolve("success");
+	// 	  };
+	// 	  timer = setTimeout(function() {
+	// 		  // reset .src to invalid URL so it stops previous
+	// 		  // loading, but doens't trigger new load
+	// 		  img.src = "//!!!!/noexist.jpg";
+	// 		  reject("timeout");
+	// 	  }, timeout);
+	// 	  img.src = url;
+	// 	});
+	// }
+	// let URL = window.location.origin;
+	function runIt() {
+		$.ajax('/api/friends', {
+			type: 'POST',
+			data: newUser
+		}).then(function(req, res) {
+			console.log(req);
+		});
+	}
+});

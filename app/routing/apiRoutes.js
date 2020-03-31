@@ -12,7 +12,7 @@ module.exports = function apiRoutes(app) {
 		var userInput = req.body;
 		// console.log('userInput = ' + JSON.stringify(userInput));
 
-		var userResponses = userInput.scores;
+		var userResponses = userInput.data;
 		console.log('userResponses = ' + userResponses);
 
 		// Calculate friend match
@@ -21,21 +21,21 @@ module.exports = function apiRoutes(app) {
 		var totalDifference = 10000;
 
 		// Loop through existing friends in the list
-		for (var i = 0; i < friends.length; i++) {
+		for (var i = 0; i < friendsData.length; i++) {
 			// console.log('friend = ' + JSON.stringify(friends[i]));
 
 			// Calculate differences for each question
 			var diff = 0;
 			for (var j = 0; j < userResponses.length; j++) {
-				diff += Math.abs(friends[i].scores[j] - userResponses[j]);
+				diff += Math.abs(friendsData[i].scores[j] - userResponses[j]);
 			}
 			// console.log('diff = ' + diff);
 
 			// If lowest difference, record the friend match
 			if (diff < totalDifference) {
 				totalDifference = diff;
-				matchName = friends[i].name;
-				matchImage = friends[i].photo;
+				matchName = friendsData[i].name;
+				matchImage = friendsData[i].photo;
 			}
 		}
 		console.log('++++++++');
