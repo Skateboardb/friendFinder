@@ -1,25 +1,27 @@
 {
-  "name": "friendFinder",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Skateboardb/friendFinder.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Skateboardb/friendFinder/issues"
-  },
-  "homepage": "https://github.com/Skateboardb/friendFinder#readme"
+	"name": "friendfinder",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.2"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "npx nodemon server.js -w *"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Skateboardb/friendFinder.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Skateboardb/friendFinder/issues"
+	},
+	"homepage": "https://github.com/Skateboardb/friendFinder#readme"
 }
